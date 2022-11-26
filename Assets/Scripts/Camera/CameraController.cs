@@ -72,7 +72,7 @@ public class CameraController : MonoBehaviour
     {
         if (!IsMouseOverUI() && !GlobalVariables.UI_OPEN)
         {
-            if (Input.GetMouseButtonDown(0) && !DragBuildings.globalSelection && !GlobalVariables.UI_OPEN)
+            if (Input.GetMouseButtonDown(0) && !MovePlaceableObjects.globalSelection && !GlobalVariables.UI_OPEN)
             {
                 Plane plane = new Plane(Vector3.up, Vector3.zero);
 
@@ -86,7 +86,7 @@ public class CameraController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButton(0) && !DragBuildings.globalSelection && !GlobalVariables.UI_OPEN)
+            if (Input.GetMouseButton(0) && !MovePlaceableObjects.globalSelection && !GlobalVariables.UI_OPEN)
             {
                 Plane plane = new Plane(Vector3.up, Vector3.zero);
 

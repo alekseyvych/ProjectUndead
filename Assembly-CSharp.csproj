@@ -8,9 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
-    <ProjectGuid>{BBEC78FF-6AC9-2C41-9224-977FA5D0B06B}</ProjectGuid>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{D559541E-D1EE-91BB-5A16-FE65AE155789}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -57,27 +56,6 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2019.4.17f1\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -95,15 +73,19 @@
     <Compile Include="Assets\Cosas viejas\LeanTween\Framework\LeanTween.cs" />
     <Compile Include="Assets\Cosas viejas\LeanTween\Framework\LeanTweenExt.cs" />
     <Compile Include="Assets\Cosas viejas\QuickOutline\Scripts\Outline.cs" />
-    <Compile Include="Assets\Scripts\Buildings\DragBuildings.cs" />
+    <Compile Include="Assets\LoadButton.cs" />
+    <Compile Include="Assets\SaveButton.cs" />
+    <Compile Include="Assets\Scripts\Buildings\MovePlaceableObjects.cs" />
+    <Compile Include="Assets\Scripts\Buildings\PlaceableObject.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraController.cs" />
     <Compile Include="Assets\Scripts\Camera\GameManager.cs" />
     <Compile Include="Assets\Scripts\Camera\GridDisplay.cs" />
     <Compile Include="Assets\Scripts\Camera\RotateWithMouse.cs" />
     <Compile Include="Assets\Scripts\Camera\TimeManager.cs" />
+    <Compile Include="Assets\Scripts\LoadSystem.cs" />
+    <Compile Include="Assets\Scripts\LoadTown.cs" />
     <Compile Include="Assets\Scripts\SaveSystem\Data.cs" />
     <Compile Include="Assets\Scripts\SaveSystem\PlaceableObjectData.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\SaveData.cs" />
     <Compile Include="Assets\Scripts\SaveSystem\SaveSystem.cs" />
     <Compile Include="Assets\Scripts\Scripts Viejos\AnalisisController.cs" />
     <Compile Include="Assets\Scripts\Scripts Viejos\Analist.cs" />
@@ -188,6 +170,7 @@
     <Compile Include="Assets\Scripts\Scripts Viejos\Workers\WorkerScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Scripts Viejos\YearTabGroup.cs" />
     <Compile Include="Assets\Scripts\Scripts Viejos\YearTabs.cs" />
+    <Compile Include="Assets\Scripts\TownController.cs" />
     <None Include="Assets\Cosas viejas\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\Cosas viejas\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\Cosas viejas\LeanTween\ReadMe.txt" />
@@ -214,7 +197,6 @@
     <None Include="Assets\Cosas viejas\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\Cosas viejas\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\Cosas viejas\TextMesh Pro\Shaders\TMP_Sprite.shader" />
-    <None Include="packages.config" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -399,7 +381,7 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.17f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>C:/Users/34655/Desktop/Hospital-Tycoon/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
+      <HintPath>C:/Users/34655/Desktop/Undead Monsters/ProjectUndead/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.17f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -747,35 +729,34 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.17f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/34655/Desktop/Hospital-Tycoon/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/34655/Desktop/Undead Monsters/ProjectUndead/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/34655/Desktop/Hospital-Tycoon/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/34655/Desktop/Undead Monsters/ProjectUndead/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/34655/Desktop/Hospital-Tycoon/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/34655/Desktop/Undead Monsters/ProjectUndead/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/34655/Desktop/Hospital-Tycoon/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/34655/Desktop/Undead Monsters/ProjectUndead/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/34655/Desktop/Hospital-Tycoon/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/34655/Desktop/Undead Monsters/ProjectUndead/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/34655/Desktop/Hospital-Tycoon/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/34655/Desktop/Undead Monsters/ProjectUndead/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/34655/Desktop/Hospital-Tycoon/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/34655/Desktop/Undead Monsters/ProjectUndead/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/34655/Desktop/Hospital-Tycoon/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/34655/Desktop/Undead Monsters/ProjectUndead/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/34655/Desktop/Hospital-Tycoon/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/34655/Desktop/Undead Monsters/ProjectUndead/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-  </ItemGroup>
+  <ItemGroup></ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

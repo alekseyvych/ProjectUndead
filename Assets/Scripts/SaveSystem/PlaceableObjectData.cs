@@ -4,13 +4,18 @@ using UnityEngine;
 [Serializable]
 public class PlaceableObjectData : Data
 {
+    public int objectId;
     public float[] position;
 
-    public PlaceableObjectData (DragBuildings building)
+    public PlaceableObjectData (PlaceableObject placeableObject)
     {
         position = new float[3];
-        position[0] = building.transform.position.x;
-        position[1] = building.transform.position.y;
-        position[2] = building.transform.position.z;
+
+        objectId = placeableObject.getObjectId();
+        Vector3 placedPosition = placeableObject.getPlacedPosition();
+        
+        position[0] = placedPosition.x;
+        position[1] = placedPosition.y;
+        position[2] = placedPosition.z;
     }
 }
