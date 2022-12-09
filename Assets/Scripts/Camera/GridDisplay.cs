@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 public class GridDisplay : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    public bool drawGrid = false;
     public InitializeGrid test;
     private Grid grid;
     private int[,] cuadricula;
@@ -35,18 +35,21 @@ public class GridDisplay : MonoBehaviour
 
     private void OnPostRender()
     {
-        for (int i = 0; i < cuadricula.GetLength(0); i++)
+        if (drawGrid)
         {
-
-            for (int j = 0; j < cuadricula.GetLength(1); j++)
+            for (int i = 0; i < cuadricula.GetLength(0); i++)
             {
-                DrawLine(grid.GetWorldPosition(i, j) - new Vector3(filas * 2.5f, 0, columnas * 2.5f), grid.GetWorldPosition(i, j + 1) - new Vector3(filas * 2.5f, 0, columnas * 2.5f));
-                DrawLine(grid.GetWorldPosition(i, j) - new Vector3(filas * 2.5f, 0, columnas * 2.5f), grid.GetWorldPosition(i + 1, j) - new Vector3(filas * 2.5f, 0, columnas * 2.5f));
 
+                for (int j = 0; j < cuadricula.GetLength(1); j++)
+                {
+                    DrawLine(grid.GetWorldPosition(i, j) - new Vector3(filas * 2.5f, 0, columnas * 2.5f), grid.GetWorldPosition(i, j + 1) - new Vector3(filas * 2.5f, 0, columnas * 2.5f));
+                    DrawLine(grid.GetWorldPosition(i, j) - new Vector3(filas * 2.5f, 0, columnas * 2.5f), grid.GetWorldPosition(i + 1, j) - new Vector3(filas * 2.5f, 0, columnas * 2.5f));
+
+                }
             }
+            DrawLine(grid.GetWorldPosition(0, columnas) - new Vector3(filas * 2.5f, 0, columnas * 2.5f), grid.GetWorldPosition(filas, columnas) - new Vector3(filas * 2.5f, 0, columnas * 2.5f));
+            DrawLine(grid.GetWorldPosition(filas, 0) - new Vector3(filas * 2.5f, 0, columnas * 2.5f), grid.GetWorldPosition(filas, columnas) - new Vector3(filas * 2.5f, 0, columnas * 2.5f));
         }
-        DrawLine(grid.GetWorldPosition(0, columnas) - new Vector3(filas * 2.5f, 0, columnas * 2.5f), grid.GetWorldPosition(filas, columnas) - new Vector3(filas * 2.5f, 0, columnas * 2.5f));
-        DrawLine(grid.GetWorldPosition(filas, 0) - new Vector3(filas * 2.5f, 0, columnas * 2.5f), grid.GetWorldPosition(filas, columnas) - new Vector3(filas * 2.5f, 0, columnas * 2.5f));
     }
 
 

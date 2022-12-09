@@ -115,7 +115,7 @@ public class PopulateWorkerShop : MonoBehaviour
             genertaedCharacters[i].transform.position = g2.transform.position;
 
 
-            instance.GetComponent<Button>().AddEventListener(i, 2, SpawnBuilding);
+            //instance.GetComponent<Button>().AddEventListener(i, 2, SpawnBuilding);
 
         }
     }

@@ -1,13 +1,23 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public long GOLD_CAP = 500000;
-    public long ELIXIR_CAP = 500000;
+    public enum Resource { ELIXIR, GOLD };
 
-    public long GOLD = 500;
-    public long ELIXIR = 500;
+    public static Dictionary<string, (int,int[])> buildingTypesPlaced = new Dictionary<string, (int, int[])>()
+    {
+        {"CANNON", (0,new int[] {1,1,2,2})},
+    };
+
+    public static int townHall = 1;
+
+    public static int GOLD_CAP = 500000;
+    public static int ELIXIR_CAP = 500000;
+
+    public static int GOLD = 500;
+    public static int ELIXIR = 500;
 
     public Image oroImage;
     public Image elixirImage;

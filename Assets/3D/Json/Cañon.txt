@@ -1,0 +1,28 @@
+{
+  "levels": [
+    {
+      "level": "1",
+      "gold": "100",
+      "elixir": "0",
+      "time": "60"
+    },
+    {
+      "level": "2",
+      "gold": "200",
+      "elixir": "0",
+      "time": "120"
+    },
+    {
+      "level": "3",
+      "gold": "0",
+      "elixir": "400",
+      "time": "240"
+    },
+    {
+      "level": "4",
+      "gold": "0",
+      "elixir": "800",
+      "time": "480"
+    }
+  ]
+}
