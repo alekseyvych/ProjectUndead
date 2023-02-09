@@ -10,8 +10,8 @@ public class MovePlaceableObjects : MonoBehaviour
     private bool isColliding = false;
 
     public static bool globalSelection = false;
+    public bool isImpar = false;
     private Vector3 position = new Vector3();
-
 
     private void Start()
     {
@@ -19,54 +19,42 @@ public class MovePlaceableObjects : MonoBehaviour
         grid = GameObject.FindWithTag("Floor").GetComponent<InitializeGrid>();
     }
 
-
-    void OnMouseDown()
+    public void unselected()
     {
-
-        if (!isSelected && !globalSelection && GlobalVariables.EDIT_MODE)
+        if (!isColliding && isSelected)
         {
-            isSelected = true;
-            globalSelection = true;
+            ChangeMaterialOfChildren(0);
             position = transform.position;
 
+            int x, z;
+            GetGridPos(GetMouseWorldPos(), out x, out z);
+
+            Vector3 posicion;
+            posicion = GetWorldPosition(x, z);
+
+            isSelected = false;
+            globalSelection = false;
+
+            //if (placeableObject.getObjectId() == -1)
+            //{
+              //  placeableObject.setObjectId(TownController.addPlaceableObject(this.placeableObject));
+            //}
+
+            Debug.Log(transform.position);
+            //placeableObject.setPlacedPosition(transform.position);
         }
+        isSelected = false;
+    }
 
-        else if (!isSelected && !globalSelection && GlobalVariables.DELETE_MODE)
-        {
-            Destroy(this.gameObject);
-        }
-
-        else
-        {
-            if (!isColliding && isSelected)
-            {
-                ChangeMaterialOfChildren(0);
-                position = transform.position;
-
-                int x, z;
-                GetGridPos(GetMouseWorldPos(), out x, out z);
-
-                Vector3 posicion;
-                posicion = GetWorldPosition(x, z);
-
-                isSelected = false;
-                globalSelection = false;
-
-                if (placeableObject.getObjectId() == -1)
-                {
-                    placeableObject.setObjectId(TownController.addPlaceableObject(this.placeableObject));
-                }
-
-                Debug.Log(transform.position);
-                placeableObject.setPlacedPosition(transform.position);
-            }
-        }
-
+    public void selected()
+    {
+        isSelected = true;
+        globalSelection = true;
+        position = transform.position;
     }
 
     private void Update()
     {
-
         if (isSelected == true)
         {
             zCoord = Camera.main.WorldToScreenPoint(
@@ -78,7 +66,6 @@ public class MovePlaceableObjects : MonoBehaviour
             Vector3 posicion;
             posicion = GetWorldPosition(x, z);
             transform.position = new Vector3(posicion.x, 0, posicion.z);
-
         }
     }
 
@@ -86,8 +73,6 @@ public class MovePlaceableObjects : MonoBehaviour
     {
         //Dibujarlo verde
     }
-
-
 
     private Vector3 GetMouseWorldPos()
     {
@@ -100,10 +85,17 @@ public class MovePlaceableObjects : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
 
-
     public Vector3 GetWorldPosition(int x, int z)
     {
-        return new Vector3(x, 0, z) * grid.tamañoCelda;
+        if (isImpar)
+        {
+            return new Vector3(x, 0, z) * (grid.tamañoCelda + grid.tamañoCelda / 2);
+        }
+        else
+        {
+            return new Vector3(x, 0, z) * grid.tamañoCelda;
+        }
+        
     }
 
     public void GetGridPos(Vector3 posicion, out int x, out int z)
@@ -112,8 +104,7 @@ public class MovePlaceableObjects : MonoBehaviour
         z = Mathf.FloorToInt(posicion.z / grid.tamañoCelda);
     }
 
-
-    void OnCollisionStay(Collision col)
+    private void OnCollisionStay(Collision col)
     {
         if ((col.gameObject.CompareTag("Building") && isSelected))
         {
@@ -121,12 +112,11 @@ public class MovePlaceableObjects : MonoBehaviour
         }
     }
 
-    void OnCollisionExit(Collision other)
+    private void OnCollisionExit(Collision other)
     {
         if ((other.gameObject.CompareTag("Building") && isSelected))
         {
             isColliding = false;
         }
     }
-
 }

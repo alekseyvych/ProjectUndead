@@ -16,7 +16,7 @@ public class PlaceableObject : MonoBehaviour
     public int maxLevel = 4;
     public int[] buildingCost = new int[] { 10, 20, 30, 40};
     public int[] buildingTime = new int[] { 10, 20, 30, 40 };
-    public Material[] materials = new Material[4];
+    public Texture2D[] texture = new Texture2D[4];
     public string description = "description";
 
     public int getObjectId()
