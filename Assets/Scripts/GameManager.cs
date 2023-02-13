@@ -4,11 +4,15 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public enum Resource { ELIXIR, GOLD };
+    public enum Resources { ELIXIR, GOLD };
 
-    public static Dictionary<string, (int,int[])> buildingTypesPlaced = new Dictionary<string, (int, int[])>()
+    public enum BuildingTypes { BASIC, DEFENSE, DECORATION };
+
+    public enum Buildings { STORAGE, CANNON, DECORATION };
+
+    public static Dictionary<Buildings, int> buildingTypesPlaced = new Dictionary<Buildings, int>()
     {
-        {"CANNON", (0,new int[] {1,1,2,2})},
+        {Buildings.CANNON, 0},
     };
 
     public static int townHall = 1;

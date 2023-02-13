@@ -43,17 +43,22 @@ public class PlaceableObjectsShopController : MonoBehaviour
 
         foreach (PlaceableObject placeableObject in placebleObjects)
         {
+            ObjectData objectData = placeableObject.objectData;
+
             instance = Instantiate(buttonTemplate, transform);
-            instance.gameObject.transform.GetChild(0).GetComponent<Text>().text = placeableObject.name;
-            instance.gameObject.transform.GetChild(1).GetComponent<Text>().text = placeableObject.buildingCost[0].ToString();
-            instance.gameObject.transform.GetChild(2).GetComponent<Image>().sprite = placeableObject.image;
-            instance.gameObject.transform.GetChild(3).GetComponent<Text>().text = placeableObject.buildingTime[0].ToString();
-            (int, int[]) tuple = GameManager.buildingTypesPlaced[placeableObject.getBuildingType()];
-            instance.gameObject.transform.GetChild(5).GetComponent<Text>().text = tuple.Item1.ToString() + "/" + tuple.Item2[GameManager.townHall].ToString();
+            instance.gameObject.transform.GetChild(0).GetComponent<Text>().text = objectData.name;
+            instance.gameObject.transform.GetChild(1).GetComponent<Text>().text = objectData.buildingCost[0].ToString();
+            instance.gameObject.transform.GetChild(2).GetComponent<Image>().sprite = objectData.image;
+            instance.gameObject.transform.GetChild(3).GetComponent<Text>().text = objectData.buildingTime[0].ToString();
 
-            instance.gameObject.transform.GetChild(6).GetComponent<Button>().OpenPlaceableObjectDescriptionEventListener(placeableObject.description, DisplayInfo);
+            int buildingsPlaced = GameManager.buildingTypesPlaced[objectData.building];
+            int maxBuildings = objectData.buildingsPerHallLevel[GameManager.townHall];
+            
+            instance.gameObject.transform.GetChild(5).GetComponent<Text>().text = buildingsPlaced.ToString() + "/" + maxBuildings .ToString();
 
-            instance.GetComponent<Button>().SpawnPlaceableObjectDescriptionEventListener(placeableObject, placeableObject.buildingCost[GameManager.townHall], placeableObject.resourceType, SpawnBuilding);
+            instance.gameObject.transform.GetChild(6).GetComponent<Button>().OpenPlaceableObjectDescriptionEventListener(placeableObject.objectData.description, DisplayInfo);
+
+            instance.GetComponent<Button>().SpawnPlaceableObjectDescriptionEventListener(placeableObject, objectData.buildingCost[GameManager.townHall], objectData.resourceType, SpawnBuilding);
 
         }
     }
@@ -63,11 +68,11 @@ public class PlaceableObjectsShopController : MonoBehaviour
 
     }
 
-    void SpawnBuilding(PlaceableObject placeableObject, int price, GameManager.Resource resource)
+    void SpawnBuilding(PlaceableObject placeableObject, int price, GameManager.Resources resource)
     {
         long playerResource = 0;
         
-        if (placeableObject.resourceType == GameManager.Resource.ELIXIR)
+        if (placeableObject.objectData.resourceType == GameManager.Resources.ELIXIR)
         {
             playerResource = GameManager.ELIXIR;
         }

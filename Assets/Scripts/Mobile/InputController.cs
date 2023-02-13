@@ -54,7 +54,7 @@ public class InputController : MonoBehaviour
                 holdDuration = 0f;
             }
 
-            if (Input.GetTouch(0).phase == TouchPhase.Moved && selection==null)
+            if (Input.GetTouch(0).phase == TouchPhase.Moved && MovePlaceableObjects.globalSelection==false)
             {
                 Vector3 currentPos = Input.GetTouch(0).position;
                 float dist = Vector3.Distance(startPos, currentPos);

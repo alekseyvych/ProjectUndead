@@ -6,7 +6,10 @@ public class PlaceableObjectData : Data
 {
     public int objectId;
     public float[] position;
-    public string buildingType;
+    public GameManager.BuildingTypes buildingType;
+    public GameManager.Buildings building;
+
+    public int level;
     public PlaceableObjectData (PlaceableObject placeableObject)
     {
         position = new float[3];
@@ -18,6 +21,9 @@ public class PlaceableObjectData : Data
         position[1] = placedPosition.y;
         position[2] = placedPosition.z;
 
-        buildingType = placeableObject.getBuildingType();
+        buildingType = placeableObject.objectData.buildingType;
+        building = placeableObject.objectData.building;
+
+        level = placeableObject.level;
     }
 }
